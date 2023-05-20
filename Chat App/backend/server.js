@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const colors = require("colors");
 connectDB();
 const userRoutes = require("./routes/userRoutes");
-
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const app = express();
 
 app.use(express.json());
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 //   res.send(chats);
 // });
 app.use("/api/user", userRoutes);
-// app.user(notFound)
-// app.user(errorHandler)
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server Started on Port ${PORT}`.yellow.bold));
