@@ -17,7 +17,7 @@ const ChatProvider = ({ children }) => {
 
     if (!userInfo) history.push("/");
   }, [history]);
-
+  // return <div>hello</div>;
   return (
     <ChatContext.Provider
       value={{

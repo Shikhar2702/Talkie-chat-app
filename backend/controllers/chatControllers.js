@@ -74,6 +74,7 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 
   var users = req.body.users;
+  // console.log(users);
 
   if (users.length < 2) {
     return res
@@ -94,10 +95,10 @@ const createGroupChat = asyncHandler(async (req, res) => {
       .populate("users", "-password")
       .populate("groupAdmin", "-password");
 
-    var arr = [fullGroupChat];
+    // var arr = [fullGroupChat];
 
-    // res.status(200).json(fullGroupChat);
-    res.status(200).json(arr);
+    res.status(200).json(fullGroupChat);
+    // res.status(200).json(arr);
   } catch (error) {
     res.status(400);
     throw new Error(error.message);

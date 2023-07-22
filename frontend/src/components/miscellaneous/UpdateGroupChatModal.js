@@ -189,10 +189,12 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
       user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
       console.log("selectedChat:", selectedChat);
-      // setFetchAgain(!fetchAgain);
+      setFetchAgain(!fetchAgain);
       fetchMessages();
       setLoading(false);
+      //
     } catch (error) {
+      // console.log(error);
       toast({
         title: "Error Occured!",
         description: error.response.data.message,

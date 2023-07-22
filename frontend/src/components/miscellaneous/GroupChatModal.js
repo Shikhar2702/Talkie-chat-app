@@ -100,11 +100,13 @@ const GroupChatModal = ({ children }) => {
         `/api/chat/group`,
         {
           name: groupChatName,
-          users: JSON.stringify(selectedUsers.map((u) => u._id)),
+          users: selectedUsers.map((u) => u._id),
+          // users: JSON.stringify(selectedUsers.map((u) => u._id)),  @causing error on .push in controllers while creating chat(sending string instead of json)
         },
         config
       );
       console.log(data);
+      // var arr = [data];
       setChats([data, ...chats]);
       onClose();
       toast({
@@ -115,14 +117,15 @@ const GroupChatModal = ({ children }) => {
         position: "bottom",
       });
     } catch (error) {
-      toast({
-        title: "Failed to Create the Chat!",
-        description: error.response.data,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-        position: "bottom",
-      });
+      // toast({
+      //   title: "Failed to Create the Chat!",
+      //   description: error.response.data,
+      //   status: "error",
+      //   duration: 5000,
+      //   isClosable: true,
+      //   position: "bottom",
+      // });
+      console.log(error);
     }
   };
 

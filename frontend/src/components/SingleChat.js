@@ -173,8 +173,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             alignItems="center"
           >
             <IconButton
-              // d={{ base: "flex", md: "none" }}
-              d="flex"
+              d={{ base: "flex", md: "none" }}
+              // d="flex"
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
             />
@@ -202,7 +202,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDir="column"
             justifyContent="flex-end"
             p={3}
-            bg="white"
+            bg="none"
             w="100%"
             h="100%"
             borderRadius="lg"
@@ -242,6 +242,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <></>
               )}
               <Input
+                // display="absolute"
                 variant="filled"
                 bg="#5ce6e3\"
                 placeholder="Enter a message.."
