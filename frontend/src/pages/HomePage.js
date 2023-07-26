@@ -13,6 +13,7 @@ import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 // import { useEffect } from "react";
 // import { useHistory } from "react-router";
+import "../App.css";
 
 const HomePage = () => {
   // const history = useHistory();
@@ -25,32 +26,35 @@ const HomePage = () => {
   return (
     <Container maxW="xl" centerContent>
       <Box
-        d="flex"
+        display="flex"
         justifyItems="center"
         p={3}
-        bg={"none"}
         w="100%"
         m="20px 0 5px 0"
         borderRadius="lg"
-        borderWidth="1px"
-        // border="none"
+        borderWidth="1.5px"
+        borderColor="black"
+        bg="#B1B2FF"
+        className="boxWithBackground"
+        opacity="0.8"
       >
-        <Text fontSize="4xl" fontfamiy="Lato" color="white">
+        <Text fontSize="4xl" fontfamiy="Lato" color="black" m="0 0 0 220px">
           Talkie
         </Text>
       </Box>
       <Box
-        bg="none"
+        bg="#B1B2FF"
+        opacity="0.95"
         w="100%"
         p={4}
         borderRadius="lg"
-        color="white"
-        borderWidth="1px"
+        borderWidth="1.5px"
+        borderColor="black"
       >
         <Tabs variant="soft-rounded">
           <TabList mb="1em">
-            <Tab color="white">Login</Tab>
-            <Tab color="white">Sign Up</Tab>
+            <Tab color="black">Login</Tab>
+            <Tab color="black">Sign Up</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

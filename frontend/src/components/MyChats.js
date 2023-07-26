@@ -47,15 +47,16 @@ const MyChats = ({ fetchAgain }) => {
 
   return (
     <Flex
-      d={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      // display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      display="flex"
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="none"
-      color="white"
+      bg="#AAC4FF"
+      opacity="0.8"
+      color="black"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
-      borderWidth=""
     >
       <Flex
         pb={3}
@@ -82,10 +83,9 @@ const MyChats = ({ fetchAgain }) => {
       </Flex>
 
       <Box
-        d="flex"
-        flexDir="column" // Set the direction to "column"
+        display="flex"
+        flexDir="column"
         p={3}
-        bg=""
         w="100%"
         h="100%"
         borderRadius="lg"
@@ -93,33 +93,35 @@ const MyChats = ({ fetchAgain }) => {
       >
         {chats ? (
           <Stack overflowY="scroll">
-            {chats.map((chat) => (
-              <Box
-                onClick={() => setSelectedChat(chat)}
-                cursor="pointer"
-                bg={selectedChat === chat ? "#90EE90" : "none"}
-                color={selectedChat === chat ? "black" : "white"}
-                fontWeight="bold"
-                px={3}
-                py={2}
-                borderRadius="lg"
-                key={chat._id}
-              >
-                <Text>
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
-                      : chat.latestMessage.content}
+            {chats
+              .filter((chat) => chat.users.length >= 2)
+              .map((chat) => (
+                <Box
+                  onClick={() => setSelectedChat(chat)}
+                  cursor="pointer"
+                  bg={selectedChat === chat ? "#90EE90" : "none"}
+                  color={selectedChat === chat ? "black" : "black"}
+                  fontWeight="bold"
+                  px={3}
+                  py={2}
+                  borderRadius="lg"
+                  key={chat._id}
+                >
+                  <Text>
+                    {!chat.isGroupChat
+                      ? getSender(loggedUser, chat.users)
+                      : chat.chatName}
                   </Text>
-                )}
-              </Box>
-            ))}
+                  {chat.latestMessage && (
+                    <Text fontSize="xs">
+                      <b>{chat.latestMessage.sender.name} : </b>
+                      {chat.latestMessage.content.length > 50
+                        ? chat.latestMessage.content.substring(0, 51) + "..."
+                        : chat.latestMessage.content}
+                    </Text>
+                  )}
+                </Box>
+              ))}
           </Stack>
         ) : (
           <ChatLoading />

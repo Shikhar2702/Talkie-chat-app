@@ -161,7 +161,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   return (
     <>
       {selectedChat ? (
-        <>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="space-between"
+          height="100%"
+        >
           <Text
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
@@ -169,14 +174,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             w="100%"
             fontfamily="Work sans"
             d="flex"
-            justifyContent={{ base: "space-between" }}
+            justifyContent="space-between"
             alignItems="center"
+            color="black"
+            // bg="green"
           >
             <IconButton
               d={{ base: "flex", md: "none" }}
-              // d="flex"
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
+              alignSelf="flex-start"
             />
             {messages &&
               (!selectedChat.isGroupChat ? (
@@ -198,15 +205,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               ))}
           </Text>
           <Box
-            d="flex"
-            flexDir="column"
+            flex="1"
+            display="flex"
+            flexDirection="column"
             justifyContent="flex-end"
             p={3}
-            bg="none"
-            w="100%"
-            h="100%"
+            overflowY="auto"
+            bg=""
             borderRadius="lg"
-            overflowY="hidden"
             color="black"
           >
             {loading ? (
@@ -222,7 +228,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <ScrollableChat messages={messages} />
               </div>
             )}
-
+          </Box>
+          <Box>
             <FormControl
               onKeyDown={sendMessage}
               id="first-name"
@@ -242,20 +249,32 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <></>
               )}
               <Input
-                // display="absolute"
+                // display="fixed"
                 variant="filled"
-                bg="#5ce6e3\"
+                bg="white"
                 placeholder="Enter a message.."
                 value={newMessage}
                 onChange={typingHandler}
               />
             </FormControl>
           </Box>
-        </>
+        </Box>
       ) : (
         // to get socket.io on same page
-        <Box d="flex" alignItems="center" justifyContent="center" h="100%">
-          <Text fontSize="3xl" pb={3} fontfamily="Work sans">
+        <Box
+          d="flex"
+          alignItems="center"
+          justifyContent="center"
+          h="100%"
+          borderRadius="lg"
+        >
+          <Text
+            fontSize="3xl"
+            pb={3}
+            fontfamily="Work sans"
+            color="black"
+            colorScheme="white"
+          >
             Click on a user to start chatting
           </Text>
         </Box>

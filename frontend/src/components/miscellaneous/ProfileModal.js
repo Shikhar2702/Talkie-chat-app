@@ -12,6 +12,7 @@ import {
   IconButton,
   Text,
   Image,
+  Avatar,
 } from "@chakra-ui/react";
 
 const ProfileModal = ({ user, children }) => {
@@ -24,6 +25,7 @@ const ProfileModal = ({ user, children }) => {
       ) : (
         <IconButton
           d={{ base: "flex", md: "none" }}
+          // alignContent="right"
           icon={<ViewIcon />}
           onClick={onOpen}
         />

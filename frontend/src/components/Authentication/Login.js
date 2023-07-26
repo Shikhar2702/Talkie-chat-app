@@ -6,7 +6,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-// import { ChatState } from "../../Context/ChatProvider";
+import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -15,7 +15,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const toast = useToast();
-  // const { setUser } = ChatState();
+  const { setUser } = ChatState();
 
   const handleClick = () => setShow(!show);
 
@@ -74,6 +74,8 @@ const Login = () => {
         <FormLabel>
           Email
           <Input
+            borderColor="black"
+            colorScheme="none"
             placeholder="Enter Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -85,6 +87,7 @@ const Login = () => {
           Password
           <InputGroup>
             <Input
+              borderColor="black"
               type={show ? "text" : "password"}
               placeholder="Enter Your Password"
               value={password}
@@ -96,6 +99,7 @@ const Login = () => {
                 size="sm"
                 onClick={handleClick}
                 colorScheme="none"
+                color="black"
               >
                 {show ? "Hide" : "Show"}
               </Button>

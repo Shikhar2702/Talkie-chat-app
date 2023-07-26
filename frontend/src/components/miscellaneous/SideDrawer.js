@@ -17,7 +17,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/modal";
 import { Tooltip } from "@chakra-ui/tooltip";
-import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
@@ -129,15 +129,14 @@ function SideDrawer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="none"
-        // backgroundImage="url('/bgpics/sidedrawerheader')"
-        color=""
+        bg="#AAC4FF"
+        color="black"
         width="100%"
         padding="5px 10px"
         borderWidth="none"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen} color="">
+          <Button variant="ghost" onClick={onOpen} color="black">
             <i className="fas fa-search"></i>
             <Text display={{ base: "none", md: "flex" }} paddingLeft={4}>
               Search User
@@ -177,7 +176,7 @@ function SideDrawer() {
             <MenuButton
               as={Button}
               background="none"
-              rightIcon={<ChevronDownIcon color="white" />}
+              rightIcon={<HamburgerIcon color="black" />}
             >
               <Avatar
                 size="sm"

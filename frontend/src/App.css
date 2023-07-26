@@ -3,10 +3,10 @@
 .App{
     min-height: 100vh;
     display: flex;
-    background-image: url("./bgpics/bg2jpg.jpg");
+    background-image: url("./bgpics/doodle1.png");
     background-size: cover;
     background-position: center;
-    color: antiquewhite;
+    color: black;
 }
 
 ::-webkit-scrollbar {
@@ -19,5 +19,6 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #38d5d7;
 }
+

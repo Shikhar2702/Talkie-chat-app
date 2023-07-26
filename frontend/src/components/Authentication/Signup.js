@@ -144,6 +144,7 @@ const Signup = () => {
           <Input
             placeholder="Enter Your Name"
             onChange={(e) => setName(e.target.value)}
+            borderColor="black"
           />
         </FormLabel>
       </FormControl>
@@ -153,6 +154,7 @@ const Signup = () => {
           <Input
             placeholder="Enter Your Email"
             onChange={(e) => setEmail(e.target.value)}
+            borderColor="black"
           />
         </FormLabel>
       </FormControl>
@@ -164,6 +166,7 @@ const Signup = () => {
               type={show ? "text" : "password"}
               placeholder="Enter Your Password"
               onChange={(e) => setPassword(e.target.value)}
+              borderColor="black"
             />
             <InputRightElement width="4.5rem">
               <Button
@@ -171,6 +174,8 @@ const Signup = () => {
                 size="sm"
                 onClick={handleClick}
                 colorScheme="none"
+                borderColor="black"
+                color="black"
               >
                 {show ? "Hide" : "Show"}
               </Button>
@@ -186,6 +191,7 @@ const Signup = () => {
               type={show ? "text" : "password"}
               placeholder="Confirm Password"
               onChange={(e) => setConfirmpassword(e.target.value)}
+              borderColor="black"
             />
             <InputRightElement width="4.5rem">
               <Button
@@ -193,6 +199,8 @@ const Signup = () => {
                 size="sm"
                 onClick={handleClick}
                 colorScheme="none"
+                borderColor="black"
+                color="black"
               >
                 {show ? "Hide" : "Show"}
               </Button>
@@ -207,6 +215,7 @@ const Signup = () => {
           p={1.5}
           accept="image/*"
           onChange={(e) => postDetails(e.target.files[0])}
+          borderColor="black"
         />
       </FormControl>
       <Button
