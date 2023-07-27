@@ -28,7 +28,26 @@ const MyChats = ({ fetchAgain }) => {
       };
 
       const { data } = await axios.get("/api/chat", config);
-      setChats(data);
+      const filteredChats = data.filter((chat) => {
+        if (chat.isGroupChat && chat.users.length < 2) {
+          axios
+            .delete(`/api/chat/groupdelete`, {
+              headers: {
+                Authorization: `Bearer ${user.token}`,
+              },
+              data: {
+                chatId: chat._id,
+              },
+            })
+            .catch((error) => {
+              console.error("Error deleting group chat:", error);
+            });
+          return false;
+        }
+        return true;
+      });
+
+      setChats(filteredChats);
     } catch (error) {
       toast({
         title: "Error Occured!",
