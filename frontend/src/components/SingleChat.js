@@ -15,10 +15,13 @@ import animationData from "../animations/typing.json";
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
+import { useColorMode } from "@chakra-ui/react";
 const ENDPOINT = "http://localhost:5000"; // "https://talk-a-tive.herokuapp.com"; -> After deployment
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+  const { colorMode } = useColorMode();
+
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -171,12 +174,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             fontSize={{ base: "28px", md: "30px" }}
             pb={3}
             px={2}
-            w="100%"
+            w="99%"
             fontfamily="Work sans"
-            d="flex"
+            display="flex"
             justifyContent="space-between"
             alignItems="center"
-            color="black"
+            bg={colorMode === "light" ? "white" : "#454545"}
+            color={colorMode === "light" ? "black" : "white"}
+            // borderRadius="lg"
+            // borderColor={colorMode === "light" ? "black" : "white"}
+            // borderWidth="1.5px"
             // bg="green"
           >
             <IconButton
@@ -206,14 +213,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </Text>
           <Box
             flex="1"
+            m="1"
+            p="1"
             display="flex"
             flexDirection="column"
             justifyContent="flex-end"
-            p={3}
             overflowY="auto"
-            bg=""
+            bg={colorMode === "light" ? "white" : "#454545"}
+            color={colorMode === "light" ? "black" : "white"}
             borderRadius="lg"
-            color="black"
+            // color="black"
           >
             {loading ? (
               <Spinner
@@ -251,10 +260,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               <Input
                 // display="fixed"
                 variant="filled"
-                bg="white"
+                bg={colorMode === "light" ? "white" : "#454545"}
+                color={colorMode === "light" ? "black" : "white"}
                 placeholder="Enter a message.."
                 value={newMessage}
                 onChange={typingHandler}
+                borderRadius="lg"
+                borderColor={colorMode === "light" ? "black" : "white"}
+                borderWidth="1.5px"
               />
             </FormControl>
           </Box>
@@ -262,7 +275,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       ) : (
         // to get socket.io on same page
         <Box
-          d="flex"
+          display="flex"
           alignItems="center"
           justifyContent="center"
           h="100%"
@@ -272,8 +285,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             fontSize="3xl"
             pb={3}
             fontfamily="Work sans"
-            color="black"
-            colorScheme="white"
+            color={colorMode === "light" ? "black" : "white"}
+            colorScheme={colorMode === "light" ? "white" : "#454545"}
           >
             Click on a user to start chatting
           </Text>

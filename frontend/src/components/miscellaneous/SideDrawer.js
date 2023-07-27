@@ -1,7 +1,9 @@
-import { Button } from "@chakra-ui/button";
+// import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
-import { Box, Text } from "@chakra-ui/layout";
+import { Text, Box, Button, useColorMode, Center } from "@chakra-ui/react";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+
 import {
   Menu,
   MenuButton,
@@ -33,6 +35,8 @@ import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 
 function SideDrawer() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -129,14 +133,18 @@ function SideDrawer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg="#AAC4FF"
-        color="black"
+        bg={colorMode === "light" ? "#75C2F6" : "#454545"}
+        color={colorMode === "light" ? "black" : "white"}
         width="100%"
         padding="5px 10px"
         borderWidth="none"
       >
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
-          <Button variant="ghost" onClick={onOpen} color="black">
+          <Button
+            variant="ghost"
+            onClick={onOpen}
+            color={colorMode === "light" ? "black" : "white"}
+          >
             <i className="fas fa-search"></i>
             <Text display={{ base: "none", md: "flex" }} paddingLeft={4}>
               Search User
@@ -146,7 +154,15 @@ function SideDrawer() {
         <Text fontSize="2xl" fontfamily="Work sans">
           Talkie
         </Text>
-        <Box display="flex" alignItems="center">
+        <Center display="flex" alignItems="center">
+          <Button
+            onClick={toggleColorMode}
+            rightIcon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            // alignSelf="flex"
+            colorScheme={colorMode === "light" ? "white" : "black"}
+          >
+            {/* {colorMode === "light" ? "D Mode" : "Light Mode"} */}
+          </Button>
           <Menu>
             <MenuButton padding={1}>
               <NotificationBadge
@@ -155,7 +171,7 @@ function SideDrawer() {
               />
               <BellIcon fontSize="2xl" marginRight={1} />
             </MenuButton>
-            <MenuList pl={2} color="black">
+            <MenuList pl={2} color={colorMode === "light" ? "black" : "white"}>
               {!notification.length && "No New Messages"}
               {notification.map((notif) => (
                 <MenuItem
@@ -176,7 +192,11 @@ function SideDrawer() {
             <MenuButton
               as={Button}
               background="none"
-              rightIcon={<HamburgerIcon color="black" />}
+              rightIcon={
+                <HamburgerIcon
+                  color={colorMode === "light" ? "black" : "white"}
+                />
+              }
             >
               <Avatar
                 size="sm"
@@ -185,7 +205,7 @@ function SideDrawer() {
                 // src={user.pic}
               />
             </MenuButton>
-            <MenuList color="black">
+            <MenuList color={colorMode === "light" ? "black" : "white"}>
               <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>
               </ProfileModal>
@@ -193,7 +213,7 @@ function SideDrawer() {
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
             </MenuList>
           </Menu>
-        </Box>
+        </Center>
       </Box>
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>

@@ -8,8 +8,10 @@ import ChatLoading from "./ChatLoading";
 import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
+import { useColorMode } from "@chakra-ui/react";
 
 const MyChats = ({ fetchAgain }) => {
+  const { colorMode } = useColorMode();
   const [loggedUser, setLoggedUser] = useState();
 
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
@@ -52,9 +54,10 @@ const MyChats = ({ fetchAgain }) => {
       flexDir="column"
       alignItems="center"
       p={3}
-      bg="#AAC4FF"
+      bg={colorMode === "light" ? "white" : "#454545"}
+      color={colorMode === "light" ? "black" : "white"}
       opacity="0.8"
-      color="black"
+      // color="black"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
     >
@@ -66,6 +69,8 @@ const MyChats = ({ fetchAgain }) => {
         display="flex"
         width="100%"
         alignItems="center"
+        bg={colorMode === "light" ? "white" : "#454545"}
+        color={colorMode === "light" ? "black" : "white"}
       >
         <span style={{ flex: 1 }}>My Chats</span>
         <GroupChatModal>
@@ -73,8 +78,8 @@ const MyChats = ({ fetchAgain }) => {
             display="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             alignItems="center"
-            color="black"
-            bg="white"
+            bg={colorMode === "light" ? "white" : "#454545"}
+            color={colorMode === "light" ? "black" : "white"}
             rightIcon={<AddIcon />}
           >
             New Group Chat
@@ -99,8 +104,16 @@ const MyChats = ({ fetchAgain }) => {
                 <Box
                   onClick={() => setSelectedChat(chat)}
                   cursor="pointer"
-                  bg={selectedChat === chat ? "#90EE90" : "none"}
-                  color={selectedChat === chat ? "black" : "black"}
+                  bg={
+                    colorMode === "light"
+                      ? selectedChat === chat
+                        ? "#75C2F6"
+                        : "white"
+                      : selectedChat === chat
+                      ? "#75C2F6"
+                      : "#454545"
+                  }
+                  color={colorMode === "light" ? "black" : "white"}
                   fontWeight="bold"
                   px={3}
                   py={2}

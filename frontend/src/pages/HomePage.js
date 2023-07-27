@@ -34,7 +34,7 @@ const HomePage = () => {
         borderRadius="lg"
         borderWidth="1.5px"
         borderColor="black"
-        bg="#B1B2FF"
+        bg="#BAD7E9"
         className="boxWithBackground"
         opacity="0.8"
       >
@@ -43,7 +43,7 @@ const HomePage = () => {
         </Text>
       </Box>
       <Box
-        bg="#B1B2FF"
+        bg="#BAD7E9"
         opacity="0.95"
         w="100%"
         p={4}

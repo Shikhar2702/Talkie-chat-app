@@ -7,15 +7,20 @@ import { ChatState } from "../Context/ChatProvider";
 
 const Chatpage = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
-  const { user } = ChatState();
+  // const { user } = ChatState();
+  const { user, colorMode } = ChatState();
 
   return (
     <div style={{ width: "100%" }}>
       {user && <SideDrawer />}
       <Flex justifyContent="space-between" height="91.5vh" padding="10px">
-        {user && <MyChats fetchAgain={fetchAgain} />}
+        {user && <MyChats fetchAgain={fetchAgain} colorMode={colorMode} />}
         {user && (
-          <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+          <Chatbox
+            fetchAgain={fetchAgain}
+            setFetchAgain={setFetchAgain}
+            colorMode={colorMode}
+          />
         )}
       </Flex>
     </div>
