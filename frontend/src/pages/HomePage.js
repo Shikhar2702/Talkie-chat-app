@@ -24,7 +24,12 @@ const HomePage = () => {
   //   if (user) history.push("/chats");
   // }, [history]);
   return (
-    <Container maxW="xl" centerContent>
+    <Container
+      maxW="xl"
+      h="100vh"
+      centerContent
+      className="home-page-container"
+    >
       <Box
         display="flex"
         justifyItems="center"
@@ -50,6 +55,10 @@ const HomePage = () => {
         borderRadius="lg"
         borderWidth="1.5px"
         borderColor="black"
+        backgroundPosition="fixed"
+        background-repeat="no-repeat"
+        background-size=" cover"
+        overflowY="scroll"
       >
         <Tabs variant="soft-rounded">
           <TabList mb="1em">
