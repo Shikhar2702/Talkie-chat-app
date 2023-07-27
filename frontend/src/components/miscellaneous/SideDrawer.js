@@ -1,4 +1,3 @@
-// import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Text, Box, Button, useColorMode, Center } from "@chakra-ui/react";
@@ -33,9 +32,16 @@ import { Effect } from "react-notification-badge";
 import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
 
 function SideDrawer() {
   const { colorMode, toggleColorMode } = useColorMode();
+
+  const {
+    isOpen: isConfirmOpen,
+    onOpen: handleConfirmOpen,
+    onClose: handleConfirmClose,
+  } = useDisclosure();
 
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -127,6 +133,42 @@ function SideDrawer() {
     }
   };
 
+  // Function to handle user deletion
+  const deleteUserHandler = async () => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      // Make an API call to delete the user
+      await axios.delete(`/api/user/${user._id}`, config);
+
+      // Display success toast when user is deleted
+      toast({
+        title: "User Deleted Successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+
+      // After successful deletion, perform logout
+      logoutHandler();
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: "Failed to Delete the User",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom-left",
+      });
+    }
+    handleConfirmClose();
+  };
+
   return (
     <>
       <Box
@@ -211,6 +253,12 @@ function SideDrawer() {
               </ProfileModal>
               <MenuDivider />
               <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+              <MenuItem onClick={handleConfirmOpen}>Delete User</MenuItem>
+              <DeleteConfirmationModal
+                isOpen={isConfirmOpen}
+                onClose={handleConfirmClose}
+                onDelete={deleteUserHandler}
+              />
             </MenuList>
           </Menu>
         </Center>
