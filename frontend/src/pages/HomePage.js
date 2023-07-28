@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import { Link } from "react-router-dom";
 // import { useEffect } from "react";
 // import { useHistory } from "react-router";
 import "../App.css";
@@ -68,6 +69,13 @@ const HomePage = () => {
           <TabPanels>
             <TabPanel>
               <Login />
+              <Link
+                to="/forgotpassword"
+                className="forgot-password-link"
+                color="blue"
+              >
+                <u>Forgot Password?</u>
+              </Link>
             </TabPanel>
             <TabPanel>
               <Signup />
