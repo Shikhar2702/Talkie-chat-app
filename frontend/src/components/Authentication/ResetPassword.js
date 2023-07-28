@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { VStack, Center } from "@chakra-ui/layout";
+import { VStack, Center, Flex } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 
@@ -70,15 +70,8 @@ const ResetPassword = () => {
   // ... your existing code ...
 
   return (
-    <Center
-      h="100vh"
-      bg="white"
-      p="20px"
-      height="100%"
-      display="center"
-      borderRadius="lg"
-    >
-      <VStack spacing="5px" maxW="400px">
+    <Flex justifyContent="center" alignItems="center" h="100%" w="100%">
+      <VStack spacing="5px" maxW="400px" bg="white" p="7" borderRadius="lg">
         <FormControl id="password" isRequired>
           <FormLabel>
             New Password
@@ -114,7 +107,7 @@ const ResetPassword = () => {
           Reset Password
         </Button>
       </VStack>
-    </Center>
+    </Flex>
   );
 };
 export default ResetPassword;
