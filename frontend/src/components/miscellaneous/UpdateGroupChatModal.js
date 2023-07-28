@@ -65,7 +65,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   };
 
   const handleRename = async () => {
-    if (!groupChatName) return;
+    // if (!groupChatName) return;
 
     try {
       setRenameLoading(true);

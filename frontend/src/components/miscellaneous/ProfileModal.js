@@ -13,6 +13,7 @@ import {
   Text,
   Image,
   Avatar,
+  Box,
 } from "@chakra-ui/react";
 
 const ProfileModal = ({ user, children }) => {
@@ -61,14 +62,10 @@ const ProfileModal = ({ user, children }) => {
               fontSize={{ base: "28px", md: "30px" }}
               fontfamily="Work sans"
             >
-              User : {user.email}
+              ID : {user.email}
             </Text>
           </ModalBody>
-          <ModalFooter>
-            <Button color="red" onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>

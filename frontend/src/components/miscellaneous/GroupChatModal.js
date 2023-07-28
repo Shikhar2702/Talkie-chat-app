@@ -117,15 +117,15 @@ const GroupChatModal = ({ children }) => {
         position: "bottom",
       });
     } catch (error) {
-      // toast({
-      //   title: "Failed to Create the Chat!",
-      //   description: error.response.data,
-      //   status: "error",
-      //   duration: 5000,
-      //   isClosable: true,
-      //   position: "bottom",
-      // });
-      console.log(error);
+      toast({
+        title: "Failed to Create the Chat!",
+        description: error.response.data,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      // console.log(error);
     }
   };
 

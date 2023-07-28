@@ -46,21 +46,11 @@ const Signup = () => {
         method: "post",
         body: data,
       })
-        .then((res) => {
-          // console.log(res.json());
-          // return;
-          res.json();
-          // console.log(res);
-        })
+        .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          if (data.url) {
-            setPic(data.url.toString());
-            console.log(data);
-            setLoading(false);
-          } else {
-            throw new Error("Failed to upload image.");
-          }
+          setPic(data.url.toString());
+          console.log(data.url.toString());
+          setLoading(false);
         })
         .catch((err) => {
           console.log(err);
@@ -98,12 +88,23 @@ const Signup = () => {
       setLoading(false);
       return;
     }
+    if (password !== confirmpassword) {
+      toast({
+        title: "Passwords Do Not Match",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
     try {
       const config = {
         headers: {
           "Content-type": "application/json",
         },
       };
+      console.log(pic);
       const { data } = await axios.post(
         "/api/user",
         {
