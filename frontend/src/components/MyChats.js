@@ -129,7 +129,7 @@ const MyChats = ({ fetchAgain }) => {
                   bg={
                     colorMode === "light"
                       ? selectedChat === chat
-                        ? "#65C18C"
+                        ? "#75C2F6"
                         : "white"
                       : selectedChat === chat
                       ? "#4942E4"

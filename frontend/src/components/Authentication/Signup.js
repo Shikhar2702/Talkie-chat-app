@@ -77,11 +77,6 @@ const Signup = () => {
     }
   };
 
-  // const handleImageUpload = (e) => {
-  //   const file = e.target.files[0];
-  //   setPic(file);
-  // };
-
   const submitHandler = async () => {
     setLoading(true);
     if (!name || !email || !password || !confirmpassword) {
@@ -119,6 +114,31 @@ const Signup = () => {
       setLoading(false);
       return;
     }
+    if (password.length < 6) {
+      toast({
+        title: "Weak Password",
+        status: "warning",
+        description: "Password should be at least 6 characters long.",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    if (password.length > 20) {
+      toast({
+        title: "Too Lengthy Password",
+        status: "warning",
+        description: "Password should be at most 20 characters long.",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+
     try {
       const config = {
         headers: {

@@ -12,18 +12,10 @@ import {
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
 import { Link } from "react-router-dom";
-// import { useEffect } from "react";
-// import { useHistory } from "react-router";
+
 import "../App.css";
 
 const HomePage = () => {
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   const user = JSON.parse(localStorage.getItem("userInfo"));
-
-  //   if (user) history.push("/chats");
-  // }, [history]);
   return (
     <div className="HomePage">
       <Container
@@ -41,7 +33,6 @@ const HomePage = () => {
           borderRadius="lg"
           borderWidth="1.5px"
           borderColor="black"
-          // bg="white"
           className="boxWithBackground"
           opacity="0.8"
         >
@@ -50,7 +41,6 @@ const HomePage = () => {
           </Text>
         </Box>
         <Box
-          // bg="white"
           opacity="0.95"
           w="100%"
           p={4}

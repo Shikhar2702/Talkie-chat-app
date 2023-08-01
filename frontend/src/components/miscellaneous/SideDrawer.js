@@ -185,7 +185,7 @@ function SideDrawer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg={colorMode === "light" ? "#75C2F6" : "#0B2447"}
+        bg={colorMode === "light" ? "#75C2F6" : "#4942E4"}
         color={colorMode === "light" ? "black" : "white"}
         width="100%"
         padding="5px 10px"

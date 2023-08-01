@@ -9,7 +9,7 @@
     color: black;
 } */
 
-.ChatPage {
+ .ChatPage {
     background-image: url("./bgpics/sky.jpg");
         background-repeat: no-repeat;
         background-size: cover;
@@ -18,13 +18,12 @@
         width: 100%;
 }
 .App.dark {
-    /* background-image: url("./bgpics/dark.jpg"); */
     background: 16213E;
 }
 
-/* Light mode styles */
-.App.light :default{
-     /* background-image: url("./bgpics/light.jfif");  */
+
+
+.App.light{
     background:C2DEDC;
 }
 
@@ -40,28 +39,22 @@ background-repeat: no-repeat;
 
 .MyChats{
     box-shadow: 0 8px 32px 0 rgba(16, 16, 16, 0.88);
-        /* backdrop-filter: blur(0 px);
-        -webkit-backdrop-filter: blur(0.5px); */
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.034);
 }
 .Chatbox{
     box-shadow: 0 8px 32px 0 rgba(16, 16, 16, 0.88);
-        /* backdrop-filter: blur(8 px);
-        -webkit-backdrop-filter: blur(8 px); */
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.034);
 }
 
 .boxWithBackground{
-    /* background: rgba(13, 208, 120, 0.919); */
         box-shadow: 0 8px 32px 0 rgba(16, 16, 15, 0.88);
         backdrop-filter: blur(5.5px);
         -webkit-backdrop-filter: blur(0.5px);
         border-radius: 10px;
         border: 1px solid rgba(255, 255, 255, 0.034);
 }
-
 
 
 ::-webkit-scrollbar {
