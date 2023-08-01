@@ -1,6 +1,13 @@
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
-import { Text, Box, Button, useColorMode, Center } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Button,
+  useColorMode,
+  Center,
+  Switch,
+} from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
 import {
@@ -62,6 +69,9 @@ function SideDrawer() {
   const history = useHistory();
 
   const logoutHandler = () => {
+    if (colorMode === "dark") {
+      toggleColorMode();
+    }
     localStorage.removeItem("userInfo");
     history.push("/");
   };
@@ -175,7 +185,7 @@ function SideDrawer() {
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        bg={colorMode === "light" ? "#75C2F6" : "#454545"}
+        bg={colorMode === "light" ? "#75C2F6" : "#0B2447"}
         color={colorMode === "light" ? "black" : "white"}
         width="100%"
         padding="5px 10px"
@@ -197,14 +207,30 @@ function SideDrawer() {
           Talkie
         </Text>
         <Center display="flex" alignItems="center">
-          <Button
-            onClick={toggleColorMode}
-            rightIcon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-            // alignSelf="flex"
-            colorScheme={colorMode === "light" ? "white" : "black"}
-          >
-            {/* {colorMode === "light" ? "D Mode" : "Light Mode"} */}
-          </Button>
+          {colorMode === "light" ? (
+            <SunIcon color="black" />
+          ) : (
+            <MoonIcon color="white" />
+          )}
+          <Tooltip placement="bottom-end">
+            <Switch
+              size="sm"
+              isChecked={colorMode === "dark"}
+              onChange={toggleColorMode}
+              aria-label="Mode"
+              colorScheme="grey"
+              borderWidth="1px"
+              borderRadius="lg"
+              bg={colorMode === "light" ? "gray.300" : "gray.600"}
+              checkedIcon={
+                colorMode === "light" ? (
+                  <MoonIcon color="gray.800" />
+                ) : (
+                  <SunIcon color="yellow.400" />
+                )
+              }
+            />
+          </Tooltip>
           <Menu>
             <MenuButton padding={1}>
               <NotificationBadge
@@ -240,12 +266,22 @@ function SideDrawer() {
                 />
               }
             >
-              <Avatar
-                size="sm"
-                cursor="pointer"
-                name={user.name}
-                src={user.pic}
-              />
+              <Center display="flex" alignItems="center">
+                {/* Conditionally render the Avatar */}
+                {user.pic ===
+                "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" ? (
+                  <Avatar size="sm" cursor="pointer" name={user.name} />
+                ) : (
+                  <Avatar
+                    size="sm"
+                    cursor="pointer"
+                    name={user.name}
+                    src={user.pic}
+                  />
+                )}
+
+                {/* ... (rest of the component code) */}
+              </Center>
             </MenuButton>
             <MenuList color={colorMode === "light" ? "black" : "white"}>
               <ProfileModal user={user}>
@@ -269,7 +305,7 @@ function SideDrawer() {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>
-            <Box d="flex" pb={2}>
+            <Box display="flex" pb={2}>
               <Input
                 placeholder="Search by name or email"
                 mr={2}
@@ -289,7 +325,7 @@ function SideDrawer() {
                 />
               ))
             )}
-            {loadingChat && <Spinner ml="auto" d="flex" />}
+            {loadingChat && <Spinner ml="auto" display="flex" />}
           </DrawerBody>
         </DrawerContent>
       </Drawer>

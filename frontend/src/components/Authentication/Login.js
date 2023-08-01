@@ -5,9 +5,10 @@ import { Button } from "@chakra-ui/button";
 import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ChatState } from "../../Context/ChatProvider";
-
+import "./Auth.css";
+import { BiHide, BiShow } from "react-icons/bi";
 const Login = () => {
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState("");
@@ -102,14 +103,15 @@ const Login = () => {
                 colorScheme="none"
                 color="black"
               >
-                {show ? "Hide" : "Show"}
+                {show ? <BiHide size="lg" /> : <BiShow size="lg" />}
               </Button>
             </InputRightElement>
           </InputGroup>
         </FormLabel>
       </FormControl>
       <Button
-        colorScheme="blue"
+        colorScheme="none"
+        className="btn"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}
@@ -118,8 +120,9 @@ const Login = () => {
         Login
       </Button>
       <Button
+        className="btn"
         variant="solid"
-        colorScheme="green"
+        colorScheme="none"
         width="100%"
         onClick={() => {
           setEmail("guest@example.com");

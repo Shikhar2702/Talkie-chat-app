@@ -9,8 +9,6 @@ import axios from "axios";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import ScrollableChat from "./ScrollableChat";
-import Lottie from "lottie-react";
-import animationData from "../animations/typing.json";
 
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
@@ -30,14 +28,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [istyping, setIsTyping] = useState(false);
   const toast = useToast();
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
   const { selectedChat, setSelectedChat, user, notification, setNotification } =
     ChatState();
 
@@ -179,7 +169,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             display="flex"
             justifyContent="space-between"
             alignItems="center"
-            bg={colorMode === "light" ? "white" : "#454545"}
+            // bg={colorMode === "light" ? "white" : "#454545"}
             color={colorMode === "light" ? "black" : "white"}
             // borderRadius="lg"
             // borderColor={colorMode === "light" ? "black" : "white"}
@@ -187,10 +177,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             // bg="green"
           >
             <IconButton
-              d={{ base: "flex", md: "none" }}
+              display="flex"
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
               alignSelf="flex-start"
+              className="btn"
+              border="none"
+              bg="none"
             />
             {messages &&
               (!selectedChat.isGroupChat ? (
@@ -219,10 +212,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             flexDirection="column"
             justifyContent="flex-end"
             overflowY="auto"
-            bg={colorMode === "light" ? "white" : "#454545"}
             color={colorMode === "light" ? "black" : "white"}
             borderRadius="lg"
-            // color="black"
           >
             {loading ? (
               <Spinner
@@ -245,22 +236,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               isRequired
               mt={3}
             >
-              {istyping ? (
-                <div>
-                  <Lottie
-                    options={defaultOptions}
-                    // height={50}
-                    width={70}
-                    style={{ marginBottom: 15, marginLeft: 0 }}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
+              {istyping ? <div>Typing...</div> : <></>}
               <Input
-                // display="fixed"
                 variant="filled"
-                bg={colorMode === "light" ? "white" : "#454545"}
                 color={colorMode === "light" ? "black" : "white"}
                 placeholder="Enter a message.."
                 value={newMessage}

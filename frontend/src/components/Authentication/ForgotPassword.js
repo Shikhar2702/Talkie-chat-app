@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { VStack, Flex, Box, Center } from "@chakra-ui/layout";
+import { VStack, Flex } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -67,7 +67,13 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Flex justifyContent="center" alignItems="center" h="100%" w="100%">
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      h="100%"
+      w="100%"
+      className="PaasChange"
+    >
       <VStack
         bg="white"
         p="20px"

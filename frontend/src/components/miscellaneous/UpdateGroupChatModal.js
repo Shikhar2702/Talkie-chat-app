@@ -1,4 +1,3 @@
-import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -16,6 +15,8 @@ import {
   IconButton,
   Spinner,
   Flex,
+  Tooltip,
+  Avatar,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useState } from "react";
@@ -31,7 +32,6 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
   const [loading, setLoading] = useState(false);
   const [renameloading, setRenameLoading] = useState(false);
   const toast = useToast();
-
   const { selectedChat, setSelectedChat, user } = ChatState();
 
   const handleSearch = async (query) => {
@@ -259,7 +259,17 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
   return (
     <>
-      <IconButton d={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+      <Tooltip label="View Profile" placement="bottom">
+        <IconButton
+          display="flex"
+          icon={<Avatar size="sm" src={user.pic} alt={user.name} />}
+          size="sm"
+          onClick={onOpen}
+          bg="none"
+          border="none"
+          borderRadius="3xl"
+        />
+      </Tooltip>
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

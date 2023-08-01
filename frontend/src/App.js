@@ -16,8 +16,16 @@ function App() {
             path="/chats"
             component={ChatPageWrapper}
           />
-          <Route path="/forgotpassword" component={ForgotPassword} />
-          <Route path="/resetpassword/:resetToken" component={ResetPassword} />
+          <Route
+            path="/forgotpassword"
+            component={ForgotPassword}
+            className="PassChange"
+          />
+          <Route
+            path="/resetpassword/:resetToken"
+            component={ResetPassword}
+            className="PassChange"
+          />
         </Switch>
       </div>
     </BrowserRouter>

@@ -1,0 +1,19 @@
+/* Apply transparent background and black border to the buttons */
+.btn {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+/* Apply green color on hover */
+.btn:hover {
+    background-color: rgba(150, 208, 87, 0.555);
+    color: white;
+    /* Optionally, change the text color on hover */
+}
+input::placeholder{
+    color: rgba(137, 24, 202, 0.686);
+    /* Change the color to your desired color */
+}
+.chakra-toast__inner {
+    color: white;
+}

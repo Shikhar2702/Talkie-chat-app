@@ -6,6 +6,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { BiHide, BiShow } from "react-icons/bi";
 
 const Signup = () => {
   const [show, setShow] = useState(false);
@@ -19,6 +20,12 @@ const Signup = () => {
   const toast = useToast();
 
   const handleClick = () => setShow(!show);
+
+  const isValidEmail = (email) => {
+    // Regular expression pattern for email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
 
   const postDetails = (pics) => {
     setLoading(true);
@@ -85,6 +92,19 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+
+      setLoading(false);
+      return;
+    }
+    if (!isValidEmail(email)) {
+      toast({
+        title: "Invalid Email",
+        status: "warning",
+        description: "Please enter a valid email address.",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
       setLoading(false);
       return;
     }
@@ -96,6 +116,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       return;
     }
     try {
@@ -179,7 +200,7 @@ const Signup = () => {
                 borderColor="black"
                 color="black"
               >
-                {show ? "Hide" : "Show"}
+                {show ? <BiHide size="lg" /> : <BiShow size="lg" />}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -204,7 +225,7 @@ const Signup = () => {
                 borderColor="black"
                 color="black"
               >
-                {show ? "Hide" : "Show"}
+                {show ? <BiHide size="lg" /> : <BiShow size="lg" />}
               </Button>
             </InputRightElement>
           </InputGroup>
@@ -221,7 +242,8 @@ const Signup = () => {
         />
       </FormControl>
       <Button
-        colorScheme="blue"
+        className="btn"
+        colorScheme="none"
         width="100%"
         style={{ marginTop: 15 }}
         onClick={submitHandler}

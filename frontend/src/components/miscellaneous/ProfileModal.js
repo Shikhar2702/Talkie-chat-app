@@ -1,4 +1,3 @@
-import { ViewIcon } from "@chakra-ui/icons";
 import {
   Modal,
   ModalOverlay,
@@ -7,29 +6,35 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
   useDisclosure,
   IconButton,
   Text,
   Image,
   Avatar,
-  Box,
+  Tooltip,
 } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react";
 
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const colorMode = useColorMode();
   return (
     <>
       {children ? (
         <span onClick={onOpen}>{children}</span>
       ) : (
-        <IconButton
-          d={{ base: "flex", md: "none" }}
-          // alignContent="right"
-          icon={<ViewIcon />}
-          onClick={onOpen}
-        />
+        <Tooltip label="View Profile" placement="bottom">
+          <IconButton
+            display="flex"
+            icon={<Avatar size="sm" src={user.pic} alt={user.name} />}
+            size="sm"
+            onClick={onOpen}
+            bg="none"
+            color={colorMode === "light" ? "black" : "white"}
+            border="none"
+            borderRadius="3xl"
+          />
+        </Tooltip>
       )}
       <Modal size="lg" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

@@ -9,6 +9,7 @@ import GroupChatModal from "./miscellaneous/GroupChatModal";
 import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 import { useColorMode } from "@chakra-ui/react";
+import "../App.css";
 
 const MyChats = ({ fetchAgain }) => {
   const { colorMode } = useColorMode();
@@ -68,15 +69,14 @@ const MyChats = ({ fetchAgain }) => {
 
   return (
     <Flex
-      // display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
-      display="flex"
+      display={{ base: selectedChat ? "none" : "flex", md: "flex" }}
+      className="MyChats"
+      // display="flex"
       flexDir="column"
       alignItems="center"
       p={3}
-      bg={colorMode === "light" ? "white" : "#454545"}
+      // bg={colorMode === "light" ? "white" : "#454545"}
       color={colorMode === "light" ? "black" : "white"}
-      opacity="0.8"
-      // color="black"
       w={{ base: "100%", md: "31%" }}
       borderRadius="lg"
     >
@@ -88,7 +88,7 @@ const MyChats = ({ fetchAgain }) => {
         display="flex"
         width="100%"
         alignItems="center"
-        bg={colorMode === "light" ? "white" : "#454545"}
+        // bg={colorMode === "light" ? "white" : "#454545"}
         color={colorMode === "light" ? "black" : "white"}
       >
         <span style={{ flex: 1 }}>My Chats</span>
@@ -97,9 +97,11 @@ const MyChats = ({ fetchAgain }) => {
             display="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             alignItems="center"
-            bg={colorMode === "light" ? "white" : "#454545"}
+            bg={colorMode === "light" ? "none" : "none"}
             color={colorMode === "light" ? "black" : "white"}
             rightIcon={<AddIcon />}
+            className="Chatbtn"
+            borderWidth="0"
           >
             New Group Chat
           </Button>
@@ -114,6 +116,7 @@ const MyChats = ({ fetchAgain }) => {
         h="100%"
         borderRadius="lg"
         overflowY="hidden"
+        className="chats"
       >
         {chats ? (
           <Stack overflowY="scroll">
@@ -126,11 +129,11 @@ const MyChats = ({ fetchAgain }) => {
                   bg={
                     colorMode === "light"
                       ? selectedChat === chat
-                        ? "#75C2F6"
+                        ? "#65C18C"
                         : "white"
                       : selectedChat === chat
-                      ? "#75C2F6"
-                      : "#454545"
+                      ? "#4942E4"
+                      : "none"
                   }
                   color={colorMode === "light" ? "black" : "white"}
                   fontWeight="bold"
